@@ -43,9 +43,6 @@ services:
     command: "npm start -- --host=0.0.0.0"
     ports:
       - 4200:4200
-    volumes:
-      - .:/home/app/servicedesk
-      - /home/app/servicedesk/node_modules 
 
   rabbitmq:
     image: rabbitmq:3.6.5-management
