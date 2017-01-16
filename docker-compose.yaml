@@ -35,7 +35,7 @@ services:
   web:
     build: https://github.com/SergeyDushkin/HelpDesk.Client.git
     ports:
-      - '80:4200'  
+      - '10000:4200'  
 
   rabbitmq:
     image: rabbitmq:3.6.5-management
