@@ -2,6 +2,12 @@ version: "2"
 
 services:
 
+  start_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - rabbitmq
+    command: rabbitmq:5672
+
   api:
     build: https://github.com/SergeyDushkin/HelpDesk.Api.git
     links:
