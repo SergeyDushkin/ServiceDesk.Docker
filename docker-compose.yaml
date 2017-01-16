@@ -22,3 +22,10 @@ services:
     ports:
       - '10010:10010'  
 
+  signalr-service:
+    build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
+    links:
+      - authorization-service
+    ports:
+      - '15000:15000'  
+
