@@ -7,6 +7,7 @@ services:
     links:
       - authorization-service
       - status-service
+      - rabbitmq
     ports:
       - '5000:5000'
 
@@ -19,6 +20,7 @@ services:
     build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
     links:
       - authorization-service
+      - rabbitmq
     ports:
       - '10010:10010'  
 
@@ -26,6 +28,7 @@ services:
     build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
     links:
       - authorization-service
+      - rabbitmq
     ports:
       - '15000:15000'  
 
@@ -34,3 +37,8 @@ services:
     ports:
       - '80:4200'  
 
+  rabbitmq:
+    image: rabbitmq:3.6.5-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
