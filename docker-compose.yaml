@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+
+  api:
+    build: https://github.com/SergeyDushkin/HelpDesk.Api.git
+    links:
+      - authorization-service
+      - status-service
+    ports:
+      - '5000:5000'
+
+  authorization-service:
+    build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
+    ports:
+      - '10001:5000'
+
+  status-service:
+    build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
+    links:
+      - authorization-service
+    ports:
+      - '10010:10010'  
+
