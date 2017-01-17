@@ -2,12 +2,6 @@ version: "2"
 
 services:
 
-  start_dependencies:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - rabbitmq
-    command: rabbitmq:5672
-
   api:
     build: https://github.com/SergeyDushkin/HelpDesk.Api.git
     links:
@@ -53,6 +47,8 @@ services:
     build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
     environment:
       VIRTUAL_HOST: "http://*/*"
+    ports:
+      - "80:80"
     networks:
       - frontend
 
@@ -63,19 +59,6 @@ services:
       - '15672:15672'
     networks:
       - backend
-
-  lb:
-    image: tutum/haproxy
-    links:
-      - web
-    environment: 
-      - DEFAULT_EXTRA_SETTINGS="http-response add-header X-Frame-Options SAMEORIGIN,http-response add-header X-Xss-Protection 1;mode=block"
-    ports:
-      - "80:80"
-      - "8080:8080"
-    networks:
-      - backend
-      - frontend
 
 networks:
   frontend: 
