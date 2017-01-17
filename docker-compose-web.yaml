@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+
+  web:
+    build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
+    environment:
+      VIRTUAL_HOST: "http://*/*"
+    networks:
+      - frontend
+
+  lb:
+    image: tutum/haproxy
+    links:
+      - web
+    environment: 
+      - DEFAULT_EXTRA_SETTINGS="http-response add-header X-Frame-Options SAMEORIGIN,http-response add-header X-Xss-Protection 1;mode=block"
+    ports:
+      - "80:80"
