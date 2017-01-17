@@ -72,6 +72,7 @@ services:
       - DEFAULT_EXTRA_SETTINGS="http-response add-header X-Frame-Options SAMEORIGIN,http-response add-header X-Xss-Protection 1;mode=block"
     ports:
       - "80:80"
+      - "8080:8080"
     networks:
       - backend
       - frontend
