@@ -16,11 +16,15 @@ services:
       - rabbitmq
     ports:
       - '5000:5000'
+    networks:
+      - frontend
 
   authorization-service:
     build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
     ports:
       - '10001:5000'
+    networks:
+      - frontend
 
   status-service:
     build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
@@ -29,6 +33,8 @@ services:
       - rabbitmq
     ports:
       - '10010:10010'  
+    networks:
+      - backend
 
   signalr-service:
     build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
@@ -39,12 +45,34 @@ services:
       - '15000:15000'  
 
   web:
-    build: https://github.com/SergeyDushkin/HelpDesk.Client.git
-    ports:
-      - 4200:4200
+    build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
+    environment:
+      VIRTUAL_HOST: "http://*/*"
+    networks:
+      - frontend
 
   rabbitmq:
     image: rabbitmq:3.6.5-management
     ports:
       - '5672:5672'
       - '15672:15672'
+    networks:
+      - backend
+
+  lb:
+    image: tutum/haproxy
+    links:
+      - web
+    environment: 
+      - DEFAULT_EXTRA_SETTINGS="http-response add-header X-Frame-Options SAMEORIGIN,http-response add-header X-Xss-Protection 1;mode=block"
+    ports:
+      - "80:80"
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend: 
+    driver: bridge
+  backend:
+    driver: bridge
