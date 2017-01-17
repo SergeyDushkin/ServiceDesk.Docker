@@ -55,6 +55,7 @@ services:
       - "80:80"
     networks:
       - frontend
+      - backend
 
   rabbitmq:
     image: rabbitmq:3.6.5-management
