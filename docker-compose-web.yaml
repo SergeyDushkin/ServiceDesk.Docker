@@ -6,8 +6,6 @@ services:
     build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
     environment:
       VIRTUAL_HOST: "http://*/*"
-    networks:
-      - frontend
 
   lb:
     image: tutum/haproxy
