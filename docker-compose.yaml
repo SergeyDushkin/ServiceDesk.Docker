@@ -47,6 +47,10 @@ services:
     build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
     environment:
       VIRTUAL_HOST: "http://*/*"
+    links:
+      - authorization-service
+      - signalr-service
+      - api
     ports:
       - "80:80"
     networks:
