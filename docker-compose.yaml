@@ -18,6 +18,7 @@ services:
       - '5000:5000'
     networks:
       - frontend
+      - backend
 
   authorization-service:
     build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
@@ -25,6 +26,7 @@ services:
       - '10001:5000'
     networks:
       - frontend
+      - backend
 
   status-service:
     build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
@@ -45,6 +47,7 @@ services:
       - '15000:15000'  
     networks:
       - frontend 
+      - backend
 
   web:
     build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
