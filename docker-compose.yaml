@@ -43,6 +43,8 @@ services:
       - rabbitmq
     ports:
       - '15000:15000'  
+    networks:
+      - frontend 
 
   web:
     build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
