@@ -17,7 +17,7 @@ services:
       - backend
 
   status-service:
-    image: sergeydushkin/helpdesk.statusmanagementsystem
+    build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
     links:
       - authorization-service
       - rabbitmq
@@ -27,7 +27,7 @@ services:
       - backend
 
   signalr-service:
-    image: sergeydushkin/servicedesk.signalr
+    build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
     links:
       - authorization-service
       - rabbitmq
