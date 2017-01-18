@@ -8,18 +8,12 @@ services:
       - authorization-service
       - status-service
       - rabbitmq
-    ports:
-      - '5000:5000'
     networks:
-      - frontend
       - backend
 
   authorization-service:
     build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
-    ports:
-      - '10001:5000'
     networks:
-      - frontend
       - backend
 
   status-service:
@@ -37,10 +31,7 @@ services:
     links:
       - authorization-service
       - rabbitmq
-    ports:
-      - '15000:15000'  
     networks:
-      - frontend 
       - backend
 
   web:
