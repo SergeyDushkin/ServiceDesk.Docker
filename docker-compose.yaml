@@ -8,6 +8,8 @@ services:
       - authorization-service
       - status-service
       - rabbitmq
+    depends_on:
+      - rabbitmq
     networks:
       - backend
 
@@ -21,6 +23,8 @@ services:
     links:
       - authorization-service
       - rabbitmq
+    depends_on:
+      - rabbitmq
     ports:
       - '10010:10010'  
     networks:
@@ -30,6 +34,8 @@ services:
     build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
     links:
       - authorization-service
+      - rabbitmq
+    depends_on:
       - rabbitmq
     networks:
       - backend
