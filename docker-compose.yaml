@@ -17,7 +17,7 @@ services:
       - backend
 
   status-service:
-    image: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
+    image: sergeydushkin/helpdesk.statusmanagementsystem
     links:
       - authorization-service
       - rabbitmq
