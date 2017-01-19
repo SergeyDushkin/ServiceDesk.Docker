@@ -37,6 +37,8 @@ services:
       - rabbitmq
     depends_on:
       - rabbitmq
+    ports:
+      - '8080:10010' 
     networks:
       - backend
 
@@ -50,7 +52,6 @@ services:
       - api
     ports:
       - "80:80"
-      - "8080:8080"
     networks:
       - frontend
       - backend
