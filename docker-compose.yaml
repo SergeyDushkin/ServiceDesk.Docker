@@ -47,7 +47,7 @@ services:
     build: 
       context: https://github.com/SergeyDushkin/ServiceDesk.Web.git
       args:
-        hostip: REPLACE_WITH_DOCKERHOSTIP
+        hostip: 52.178.193.205
     environment:
       VIRTUAL_HOST: "http://*/*"
     links:
