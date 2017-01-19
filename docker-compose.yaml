@@ -44,7 +44,10 @@ services:
       - backend
 
   web:
-    build: https://github.com/SergeyDushkin/ServiceDesk.Web.git
+    build: 
+      context: https://github.com/SergeyDushkin/ServiceDesk.Web.git
+      args:
+        hostip: REPLACE_WITH_DOCKERHOSTIP
     environment:
       VIRTUAL_HOST: "http://*/*"
     links:
