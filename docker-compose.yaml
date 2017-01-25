@@ -8,14 +8,20 @@ services:
       - authorization-service
       - status-service
       - rabbitmq
+      - postgres
     depends_on:
       - rabbitmq
+      - postgres
+    ports:
+      - '5000:5000'  
     networks:
+      - frontend
       - backend
 
   authorization-service:
     build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
     networks:
+      - frontend
       - backend
 
   status-service:
@@ -23,11 +29,14 @@ services:
     links:
       - authorization-service
       - rabbitmq
+      - postgres
     depends_on:
       - rabbitmq
+      - postgres
     ports:
       - '10010:10010'  
     networks:
+      - frontend
       - backend
 
   signalr-service:
@@ -66,6 +75,18 @@ services:
       - '5672:5672'
       - '15672:15672'
     networks:
+      - frontend
+      - backend
+
+  postgres:
+    container_name: 'postgres'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: !12345Aa
+    ports:
+      - "5432:5432"
+    networks:
+      - frontend
       - backend
 
 networks:
