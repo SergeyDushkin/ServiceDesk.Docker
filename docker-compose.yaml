@@ -7,6 +7,7 @@ services:
     links:
       - authorization-service
       - status-service
+      - tickets-service
       - rabbitmq
       - postgres
     depends_on:
@@ -35,6 +36,21 @@ services:
       - postgres
     ports:
       - '10010:10010'  
+    networks:
+      - frontend
+      - backend
+
+  tickets-service:
+    build: https://github.com/SergeyDushkin/Servicedesk.Services.Tickets.git
+    links:
+      - authorization-service
+      - rabbitmq
+      - postgres
+    depends_on:
+      - rabbitmq
+      - postgres
+    ports:
+      - '10020:10020'  
     networks:
       - frontend
       - backend
@@ -82,7 +98,7 @@ services:
     container_name: 'postgres'
     image: postgres
     environment:
-      POSTGRES_PASSWORD: "!12345Aa"
+      - POSTGRES_PASSWORD=!12345Aa
     ports:
       - "5432:5432"
     networks:
