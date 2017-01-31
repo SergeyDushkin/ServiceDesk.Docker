@@ -122,6 +122,43 @@ services:
       - frontend
       - backend
 
+  elasticsearch:
+    image: elasticsearch:5.1
+    restart: always
+    log_opt:
+      max-size: "10m"
+      max-file: "10"
+    ports:
+      - 9200:9200
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+    networks:
+      - frontend
+      - backend
+
+  kibana:
+    image: kibana:5.1
+    restart: always
+    log_opt:
+        max-size: "10m"
+        max-file: "10"
+    ports:
+        - 5601:5601
+    links:
+        - elasticsearch
+    networks:
+      - frontend
+      - backend
+
+  curator:
+    image: bobrik/curator
+    restart: always
+    log_opt:
+        max-size: "10m"
+        max-file: "10"
+    links:
+        - elasticsearch
+
 networks:
   frontend: 
     driver: bridge
