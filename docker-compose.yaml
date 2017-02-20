@@ -83,7 +83,7 @@ services:
       - rabbitmq
       - postgres
     ports:
-      - '5000:10030'  
+      - '10030:5000'  
     networks:
       - frontend
       - backend
