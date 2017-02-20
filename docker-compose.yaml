@@ -72,6 +72,22 @@ services:
       - frontend
       - backend
 
+  drive-service:
+    build: https://github.com/SergeyDushkin/Servicedesk.Services.Drive.git
+    links:
+      - authorization-service
+      - rabbitmq
+      - postgres
+      - consul
+    depends_on:
+      - rabbitmq
+      - postgres
+    ports:
+      - '5000:10030'  
+    networks:
+      - frontend
+      - backend
+
   web:
     build: 
       context: https://github.com/SergeyDushkin/ServiceDesk.Web.git
