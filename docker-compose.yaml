@@ -73,7 +73,7 @@ services:
       - backend
 
   drive-service:
-    build: https://github.com/SergeyDushkin/Servicedesk.Services.Drive.git
+    build: https://github.com/SergeyDushkin/ServiceDesk.Services.Drive.git
     links:
       - authorization-service
       - rabbitmq
