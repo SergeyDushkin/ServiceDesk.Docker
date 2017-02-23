@@ -98,6 +98,7 @@ services:
     links:
       - authorization-service
       - signalr-service
+      - drive-service
       - api
     ports:
       - "80:80"
