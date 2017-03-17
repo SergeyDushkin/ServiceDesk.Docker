@@ -22,6 +22,8 @@ services:
 
   authorization-service:
     build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
+    depends_on:
+      - postgres
     networks:
       - frontend
       - backend
@@ -58,19 +60,19 @@ services:
       - frontend
       - backend
 
-  signalr-service:
-    build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
-    links:
-      - authorization-service
-      - rabbitmq
-      - consul
-    depends_on:
-      - rabbitmq
-    ports:
-      - '8080:15000' 
-    networks:
-      - frontend
-      - backend
+#  signalr-service:
+#    build: https://github.com/SergeyDushkin/ServiceDesk.SignalR.git
+#    links:
+#      - authorization-service
+#      - rabbitmq
+#      - consul
+#    depends_on:
+#      - rabbitmq
+#    ports:
+#      - '8080:15000' 
+#    networks:
+#      - frontend
+#      - backend
 
   drive-service:
     build: https://github.com/SergeyDushkin/ServiceDesk.Services.Drive.git
@@ -97,7 +99,6 @@ services:
       VIRTUAL_HOST: "http://*/*"
     links:
       - authorization-service
-      - signalr-service
       - drive-service
       - api
     ports:
@@ -163,11 +164,11 @@ services:
       - frontend
       - backend
 
-  curator:
-    image: bobrik/curator
-    restart: always
-    links:
-        - elasticsearch
+#  curator:
+#    image: bobrik/curator
+#    restart: always
+#    links:
+#        - elasticsearch
 
 networks:
   frontend: 
