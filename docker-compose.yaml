@@ -21,7 +21,7 @@ services:
       - backend
 
   authorization-service:
-    build: https://github.com/SergeyDushkin/HelpDesk.Authorization.git
+    build: https://github.com/SergeyDushkin/ServiceDesk.Authorization.git
     depends_on:
       - postgres
     networks:
