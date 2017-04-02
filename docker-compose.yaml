@@ -98,9 +98,9 @@ services:
     environment:
       VIRTUAL_HOST: "http://*/*"
     links:
-      - authorization-service
+#      - authorization-service
       - drive-service
-      - api
+#      - api
     ports:
       - "80:80"
     networks:
