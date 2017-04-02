@@ -2,52 +2,52 @@ version: "2"
 
 services:
 
-  api:
-    build: https://github.com/SergeyDushkin/HelpDesk.Api.git
-    links:
-      - authorization-service
-      - status-service
-      - tickets-service
-      - rabbitmq
-      - postgres
-      - consul
-    depends_on:
-      - rabbitmq
-      - postgres
-    ports:
-      - '5000:5000'  
-    networks:
-      - frontend
-      - backend
+#  api:
+#    build: https://github.com/SergeyDushkin/HelpDesk.Api.git
+#    links:
+#      - authorization-service
+#      - status-service
+#      - tickets-service
+#      - rabbitmq
+#      - postgres
+#      - consul
+#    depends_on:
+#      - rabbitmq
+#      - postgres
+#    ports:
+#      - '5000:5000'  
+#    networks:
+#      - frontend
+#      - backend
 
-  authorization-service:
-    build: https://github.com/SergeyDushkin/ServiceDesk.Authorization.git
-    depends_on:
-      - postgres
-    networks:
-      - frontend
-      - backend
+#  authorization-service:
+#    build: https://github.com/SergeyDushkin/ServiceDesk.Authorization.git
+#    depends_on:
+#      - postgres
+#    networks:
+#      - frontend
+#      - backend
 
-  status-service:
-    build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
-    links:
-      - authorization-service
-      - rabbitmq
-      - postgres
-      - consul
-    depends_on:
-      - rabbitmq
-      - postgres
-    ports:
-      - '10010:10010'  
-    networks:
-      - frontend
-      - backend
+#  status-service:
+#    build: https://github.com/SergeyDushkin/HelpDesk.StatusManagementSystem.git
+#    links:
+#      - authorization-service
+#      - rabbitmq
+#      - postgres
+#      - consul
+#    depends_on:
+#      - rabbitmq
+#      - postgres
+#    ports:
+#      - '10010:10010'  
+#    networks:
+#      - frontend
+#      - backend
 
   tickets-service:
     build: https://github.com/SergeyDushkin/Servicedesk.Services.Tickets.git
     links:
-      - authorization-service
+#      - authorization-service
       - rabbitmq
       - postgres
       - consul
@@ -77,7 +77,7 @@ services:
   drive-service:
     build: https://github.com/SergeyDushkin/ServiceDesk.Services.Drive.git
     links:
-      - authorization-service
+ #     - authorization-service
       - rabbitmq
       - postgres
       - consul
