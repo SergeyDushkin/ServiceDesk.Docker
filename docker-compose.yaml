@@ -44,6 +44,14 @@ services:
 #      - frontend
 #      - backend
 
+  iot-service:
+    build: https://github.com/SergeyDushkin/iot.api.git
+    ports:
+      - '8080:5000'  
+    networks:
+      - frontend
+      - backend
+
   tickets-service:
     build: https://github.com/SergeyDushkin/Servicedesk.Services.Tickets.git
     links:
